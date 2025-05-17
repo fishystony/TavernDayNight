@@ -1,82 +1,40 @@
-<div id="tavern-day-night-switch" class="extension-settings">
-  <div class="inline-drawer">
-    <div class="inline-drawer-toggle inline-drawer-header" data-name="tavern-day-night-switch">
-      <b>酒馆主题昼夜切换</b>
-      <div class="inline-drawer-icon fa-solid fa-circle-chevron-down down"></div>
+<div class="tavern-day-night-settings">
+    <div class="inline-drawer">
+        <div class="inline-drawer-toggle inline-drawer-header">
+            <b>酒馆主题昼夜切换</b>
+            <div class="inline-drawer-icon fa-solid fa-circle-chevron-down down"></div>
+        </div>
+        <div class="inline-drawer-content">
+            <div class="tavern-day-night-block">
+                <div class="settings-item">
+                    <label for="day_theme">日间主题:</label>
+                    <input type="text" id="day_theme" placeholder="输入日间主题名称">
+                </div>
+                <div class="settings-item">
+                    <label for="day_background">日间背景:</label>
+                    <input type="text" id="day_background" placeholder="输入日间背景名称">
+                </div>
+                <div class="settings-item">
+                    <label for="night_theme">夜间主题:</label>
+                    <input type="text" id="night_theme" placeholder="输入夜间主题名称">
+                </div>
+                <div class="settings-item">
+                    <label for="night_background">夜间背景:</label>
+                    <input type="text" id="night_background" placeholder="输入夜间背景名称">
+                </div>
+                <div class="settings-item">
+                    <label for="day_start">日间开始时间:</label>
+                    <input type="time" id="day_start" value="06:00">
+                </div>
+                <div class="settings-item">
+                    <label for="day_end">日间结束时间:</label>
+                    <input type="time" id="day_end" value="18:00">
+                </div>
+                <div class="settings-item">
+                    <input type="checkbox" id="auto_switch">
+                    <label for="auto_switch">自动切换</label>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="inline-drawer-content">
-      <div class="tavern-switch-settings">
-        <!-- 日间设置 -->
-        <div class="tavern-settings-section">
-          <h4>日间设置</h4>
-          <div class="tavern-settings-row">
-            <label for="tavern-day-theme">日间主题:</label>
-            <select id="tavern-day-theme" class="tavern-select">
-              <option value="">默认</option>
-              <!-- 主题选项将动态添加 -->
-            </select>
-          </div>
-          <div class="tavern-settings-row">
-            <label for="tavern-day-background">日间背景:</label>
-            <select id="tavern-day-background" class="tavern-select">
-              <option value="">默认</option>
-              <!-- 背景选项将动态添加 -->
-            </select>
-          </div>
-          <div class="tavern-settings-row">
-            <input id="tavern-apply-day" type="button" class="menu_button" value="立即应用日间设置" />
-          </div>
-        </div>
-        
-        <!-- 夜间设置 -->
-        <div class="tavern-settings-section">
-          <h4>夜间设置</h4>
-          <div class="tavern-settings-row">
-            <label for="tavern-night-theme">夜间主题:</label>
-            <select id="tavern-night-theme" class="tavern-select">
-              <option value="">默认</option>
-              <!-- 主题选项将动态添加 -->
-            </select>
-          </div>
-          <div class="tavern-settings-row">
-            <label for="tavern-night-background">夜间背景:</label>
-            <select id="tavern-night-background" class="tavern-select">
-              <option value="">默认</option>
-              <!-- 背景选项将动态添加 -->
-            </select>
-          </div>
-          <div class="tavern-settings-row">
-            <input id="tavern-apply-night" type="button" class="menu_button" value="立即应用夜间设置" />
-          </div>
-        </div>
-        
-        <!-- 自动切换设置 -->
-        <div class="tavern-settings-section">
-          <h4>自动切换设置</h4>
-          <div class="tavern-settings-row">
-            <label for="tavern-auto-switch">启用自动切换:</label>
-            <input type="checkbox" id="tavern-auto-switch" />
-          </div>
-          <div class="tavern-settings-row">
-            <label for="tavern-day-start">日间开始时间 (24小时制):</label>
-            <input type="number" id="tavern-day-start" min="0" max="23" value="6" />
-          </div>
-          <div class="tavern-settings-row">
-            <label for="tavern-day-end">日间结束时间 (24小时制):</label>
-            <input type="number" id="tavern-day-end" min="0" max="23" value="18" />
-          </div>
-          <div class="tavern-settings-note">
-            注: 当现实时间处于日间开始和结束时间之间时，将自动应用日间设置；否则应用夜间设置。
-          </div>
-        </div>
-        
-        <!-- 刷新按钮 -->
-        <div class="tavern-settings-section">
-          <div class="tavern-settings-row">
-            <input id="tavern-refresh-lists" type="button" class="menu_button" value="刷新列表" />
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
