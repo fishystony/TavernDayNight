@@ -105,7 +105,7 @@
     white-space: nowrap;
 }
 
-/* 按钮（例如设置按钮） */
+/* 按钮（设置按钮） */
 #tavern-edge-controls .tavern-button {
     font-size: 14px;
     padding: 5px 10px;
@@ -113,7 +113,7 @@
     width: 100%;
     text-align: center;
     background-color: var(--tavern-button-bg);
-    color: #ffffff; /* 按钮字体为白色 */
+    color: #ffffff;
     border: 1px solid var(--tavern-border-color);
     border-radius: 5px;
     cursor: pointer;
@@ -124,65 +124,49 @@
     background-color: var(--tavern-button-hover-bg);
 }
 
-/* 设置面板 */
-#tavern-settings {
-    position: fixed;
-    top: 5vh;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 90%;
-    max-width: 600px;
-    max-height: 90vh;
-    background-color: var(--tavern-blur-tint);
+/* 设置面板（抽屉式） */
+#tavern-settings.inline-drawer {
+    margin: 15px;
     border: 1px solid var(--tavern-border-color);
     border-radius: 10px;
-    padding: 20px;
-    z-index: 10000;
-    color: var(--tavern-body-color);
+    overflow: hidden;
+    background-color: var(--tavern-blur-tint);
     backdrop-filter: blur(var(--tavern-blur-strength));
-    display: flex;
-    flex-direction: column;
-    overflow-y: auto;
 }
 
-/* 设置面板头部 */
-#tavern-settings-header {
+.inline-drawer-header {
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 8px 15px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-bottom: 10px;
-    border-bottom: 1px solid var(--tavern-border-color);
-}
-
-/* 关闭设置面板按钮 */
-#tavern-close-settings {
     cursor: pointer;
-    font-size: 24px;
 }
 
-/* 设置面板内容 */
-#tavern-settings-content {
-    flex-grow: 1;
-    overflow-y: auto;
-    padding-right: 10px;
-    margin-top: 10px;
+.inline-drawer-header b {
+    font-size: 16px;
 }
 
-/* 设置分组 */
-#tavern-settings-content .settings-section {
+.inline-drawer-icon {
+    font-size: 16px;
+}
+
+.inline-drawer-content {
+    padding: 10px;
+}
+
+.settings-section {
     margin-bottom: 15px;
 }
 
-/* 设置子标题 */
-#tavern-settings-content .settings-subtitle {
+.settings-subtitle {
     font-size: 14px;
     margin-bottom: 5px;
+    color: var(--tavern-body-color);
 }
 
-/* 下拉菜单和时间输入框 */
-#tavern-settings-content select,
-#tavern-settings-content input[type="time"],
-#tavern-settings-content input[type="color"] {
+#tavern-settings select,
+#tavern-settings input[type="time"] {
     width: 100%;
     padding: 5px;
     background-color: rgba(255, 255, 255, 0.1);
@@ -192,36 +176,28 @@
     margin-bottom: 10px;
 }
 
-/* 输入框聚焦样式 */
-#tavern-settings-content select:focus,
-#tavern-settings-content input[type="time"]:focus,
-#tavern-settings-content input[type="color"]:focus {
+#tavern-settings select:focus,
+#tavern-settings input[type="time"]:focus {
     outline: none;
     border-color: #0056b3;
 }
 
-/* 颜色选择器样式 */
-#tavern-settings-content input[type="color"] {
-    height: 30px;
-    padding: 2px;
-}
-
-/* 设置面板滚动条 */
-#tavern-settings-content::-webkit-scrollbar {
+/* 滚动条样式 */
+#tavern-settings .inline-drawer-content::-webkit-scrollbar {
     width: 8px;
 }
 
-#tavern-settings-content::-webkit-scrollbar-track {
+#tavern-settings .inline-drawer-content::-webkit-scrollbar-track {
     background: rgba(0, 0, 0, 0.1);
     border-radius: 4px;
 }
 
-#tavern-settings-content::-webkit-scrollbar-thumb {
+#tavern-settings .inline-drawer-content::-webkit-scrollbar-thumb {
     background: rgba(255, 255, 255, 0.3);
     border-radius: 4px;
 }
 
-#tavern-settings-content::-webkit-scrollbar-thumb:hover {
+#tavern-settings .inline-drawer-content::-webkit-scrollbar-thumb:hover {
     background: rgba(255, 255, 255, 0.5);
 }
 
@@ -257,13 +233,7 @@
         font-size: 10px;
     }
 
-    #tavern-settings {
-        width: 95%;
-        max-height: 80vh;
-        padding: 15px;
-    }
-
-    #tavern-settings-content {
-        max-height: calc(75vh - 100px);
+    #tavern-settings.inline-drawer {
+        margin: 10px;
     }
 }
