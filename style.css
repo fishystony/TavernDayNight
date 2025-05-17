@@ -11,8 +11,9 @@
 /* 边缘控制面板 */
 #tavern-edge-controls {
     position: fixed;
-    right: 0;
+    right: -80px;
     top: 20vh;
+    transition: right 0.3s ease-in-out;
     background-color: var(--tavern-blur-tint);
     border: 1px solid var(--tavern-border-color);
     border-radius: 10px 0 0 10px;
@@ -24,15 +25,14 @@
     width: 80px;
     color: var(--tavern-body-color);
     backdrop-filter: blur(var(--tavern-blur-strength));
-    transition: transform 0.3s ease-in-out;
 }
 
-/* 收起状态 */
-#tavern-edge-controls.collapsed {
-    transform: translateX(100%);
+/* 显示状态 */
+#tavern-edge-controls:not(.collapsed) {
+    right: 0;
 }
 
-/* 显示/隐藏面板的切换按钮 */
+/* 切换按钮 */
 #tavern-edge-controls #toggle-edge-controls {
     position: absolute;
     top: 50%;
@@ -48,6 +48,10 @@
     font-size: 12px;
     text-align: center;
     transition: all 0.3s ease-in-out;
+}
+
+#tavern-edge-controls #toggle-edge-controls:hover {
+    background-color: var(--tavern-button-hover-bg);
 }
 
 /* 昼夜切换开关 */
@@ -154,7 +158,6 @@
 .settings-subtitle {
     font-size: 14px;
     margin-bottom: 5px;
-    color: var(--tavern-body-color);
 }
 
 #tavern-settings select,
