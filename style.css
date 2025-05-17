@@ -13,7 +13,6 @@
     position: fixed;
     right: 0;
     top: 20vh;
-    transition: all 0.3s ease-in-out;
     background-color: var(--smart-theme-blur-tint);
     border: 1px solid var(--smart-theme-border-color);
     border-radius: 10px 0 0 10px;
@@ -25,7 +24,6 @@
     width: 100px;
     color: var(--smart-theme-body-color);
     backdrop-filter: blur(var(--smart-theme-blur-strength));
-    transform: translateX(0);
 }
 
 #html-injector-edge-controls.left-side {
@@ -35,11 +33,11 @@
 }
 
 #html-injector-edge-controls.collapsed {
-    transform: translateX(100%);
+    right: -100px;
 }
 
 #html-injector-edge-controls.left-side.collapsed {
-    transform: translateX(-100%);
+    left: -100px;
 }
 
 #html-injector-edge-controls #toggle-edge-controls {
@@ -56,8 +54,7 @@
     user-select: none;
     font-size: 12px;
     text-align: center;
-    z-index: 1;
-    transition: all 0.3s ease-in-out;
+    z-index: 10000;
 }
 
 #html-injector-edge-controls:not(.left-side) #toggle-edge-controls {
@@ -72,56 +69,6 @@
     border-radius: 0 5px 5px 0;
 }
 
-#html-injector-edge-controls.collapsed #toggle-edge-controls {
-    transform: translateY(-50%);
-}
-
-/* 开关样式 */
-#html-injector-edge-controls .html-injector-switch {
-    position: relative;
-    display: inline-block;
-    width: 50px;
-    height: 24px;
-}
-
-#html-injector-edge-controls .html-injector-switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-#html-injector-edge-controls .html-injector-slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(128, 128, 128, 0.3);
-    transition: .2s;
-    border-radius: 24px;
-}
-
-#html-injector-edge-controls .html-injector-slider:before {
-    position: absolute;
-    content: "";
-    height: 18px;
-    width: 18px;
-    left: 3px;
-    bottom: 3px;
-    background-color: var(--smart-theme-body-color);
-    transition: .2s;
-    border-radius: 50%;
-}
-
-#html-injector-edge-controls .html-injector-switch input:checked + .html-injector-slider {
-    background-color: var(--smart-theme-border-color);
-}
-
-#html-injector-edge-controls .html-injector-switch input:checked + .html-injector-slider:before {
-    transform: translateX(26px);
-}
-
 /* 按钮样式 */
 #html-injector-edge-controls .html-injector-button {
     font-size: 14px;
@@ -132,7 +79,8 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    background-color: var(--smart-theme-button-bg);
+    background-color: var(--smart-theme-button);
+    novel-writing-mode: nowrap;
     color: var(--smart-theme-body-color);
     border: 1px solid var(--smart-theme-border-color);
     border-radius: 5px;
@@ -202,4 +150,31 @@
 
 .tavern-day-night-settings .settings-item input[type="checkbox"] {
     margin-right: 5px;
+}
+
+.tavern-day-night-settings .inline-drawer-header {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: var(--smart-theme-button-bg);
+    border-radius: 5px;
+}
+
+.tavern-day-night-settings .inline-drawer-content {
+    padding: 10px;
+    display: none;
+}
+
+.tavern-day-night-settings .inline-drawer.open .inline-drawer-content {
+    display: block;
+}
+
+.tavern-day-night-settings .inline-drawer-icon {
+    transition: transform 0.3s;
+}
+
+.tavern-day-night-settings .inline-drawer.open .inline-drawer-icon {
+    transform: rotate(180deg);
 }
