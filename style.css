@@ -1,56 +1,56 @@
 /* 通用变量 */
 :root {
-    --tavern-theme-blur-tint: rgba(22, 11, 18, 0.73);
-    --tavern-theme-body-color: rgba(220, 220, 210, 1);
-    --tavern-theme-border-color: rgba(217, 90, 157, 0.5);
-    --tavern-theme-button-bg: rgba(74, 74, 74, 0.5);
-    --tavern-theme-button-hover-bg: rgba(90, 90, 90, 0.7);
-    --tavern-theme-blur-strength: 6px;
+    --smart-theme-blur-tint: var(--SmartThemeBlurTintColor, rgba(22, 11, 18, 0.73));
+    --smart-theme-body-color: var(--SmartThemeBodyColor, rgba(220, 220, 210, 1));
+    --smart-theme-border-color: var(--SmartThemeBorderColor, rgba(217, 90, 157, 0.5));
+    --smart-theme-button-bg: var(--SmartThemeButtonBG, rgba(74, 74, 74, 0.5));
+    --smart-theme-button-hover-bg: var(--SmartThemeButtonHoverBG, rgba(90, 90, 90, 0.7));
+    --smart-theme-blur-strength: var(--SmartThemeBlurStrength, 6px);
 }
 
 /* 边缘控制面板样式 */
-.tavern-switch-edge-controls {
+#html-injector-edge-controls {
     position: fixed;
     right: 0;
     top: 20vh;
     transition: all 0.3s ease-in-out;
-    background-color: var(--tavern-theme-blur-tint);
-    border: 1px solid var(--tavern-theme-border-color);
+    background-color: var(--smart-theme-blur-tint);
+    border: 1px solid var(--smart-theme-border-color);
     border-radius: 10px 0 0 10px;
     padding: 10px;
     z-index: 9999;
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 120px;
-    color: var(--tavern-theme-body-color);
-    backdrop-filter: blur(var(--tavern-theme-blur-strength));
+    width: 100px;
+    color: var(--smart-theme-body-color);
+    backdrop-filter: blur(var(--smart-theme-blur-strength));
     transform: translateX(0);
 }
 
-.tavern-switch-edge-controls.left-side {
+#html-injector-edge-controls.left-side {
     right: auto;
     left: 0;
     border-radius: 0 10px 10px 0;
 }
 
-.tavern-switch-edge-controls.collapsed {
+#html-injector-edge-controls.collapsed {
     transform: translateX(100%);
 }
 
-.tavern-switch-edge-controls.left-side.collapsed {
+#html-injector-edge-controls.left-side.collapsed {
     transform: translateX(-100%);
 }
 
-.tavern-switch-edge-controls #toggle-edge-controls {
+#html-injector-edge-controls #toggle-edge-controls {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     width: 20px;
     height: 60px;
-    background-color: var(--tavern-theme-blur-tint);
-    color: var(--tavern-theme-body-color);
-    border: 1px solid var(--tavern-theme-border-color);
+    background-color: var(--smart-theme-blur-tint);
+    color: var(--smart-theme-body-color);
+    border: 1px solid var(--smart-theme-border-color);
     cursor: pointer;
     padding: 5px;
     user-select: none;
@@ -60,40 +60,37 @@
     transition: all 0.3s ease-in-out;
 }
 
-/* 默认（右侧面板）的toggle按钮样式 */
-.tavern-switch-edge-controls:not(.left-side) #toggle-edge-controls {
+#html-injector-edge-controls:not(.left-side) #toggle-edge-controls {
     left: -20px;
     right: auto;
     border-radius: 5px 0 0 5px;
 }
 
-/* 左侧面板的toggle按钮样式 */
-.tavern-switch-edge-controls.left-side #toggle-edge-controls {
+#html-injector-edge-controls.left-side #toggle-edge-controls {
     left: auto;
     right: -20px;
     border-radius: 0 5px 5px 0;
 }
 
-/* 确保收起状态下按钮仍然可见 */
-.tavern-switch-edge-controls.collapsed #toggle-edge-controls {
+#html-injector-edge-controls.collapsed #toggle-edge-controls {
     transform: translateY(-50%);
 }
 
 /* 开关样式 */
-.tavern-switch-switch {
+#html-injector-edge-controls .html-injector-switch {
     position: relative;
     display: inline-block;
     width: 50px;
     height: 24px;
 }
 
-.tavern-switch-switch input {
+#html-injector-edge-controls .html-injector-switch input {
     opacity: 0;
     width: 0;
     height: 0;
 }
 
-.tavern-switch-slider {
+#html-injector-edge-controls .html-injector-slider {
     position: absolute;
     cursor: pointer;
     top: 0;
@@ -105,28 +102,28 @@
     border-radius: 24px;
 }
 
-.tavern-switch-slider:before {
+#html-injector-edge-controls .html-injector-slider:before {
     position: absolute;
     content: "";
     height: 18px;
     width: 18px;
     left: 3px;
     bottom: 3px;
-    background-color: var(--tavern-theme-body-color);
+    background-color: var(--smart-theme-body-color);
     transition: .2s;
     border-radius: 50%;
 }
 
-.tavern-switch-switch input:checked + .tavern-switch-slider {
-    background-color: var(--tavern-theme-border-color);
+#html-injector-edge-controls .html-injector-switch input:checked + .html-injector-slider {
+    background-color: var(--smart-theme-border-color);
 }
 
-.tavern-switch-switch input:checked + .tavern-switch-slider:before {
+#html-injector-edge-controls .html-injector-switch input:checked + .html-injector-slider:before {
     transform: translateX(26px);
 }
 
 /* 按钮样式 */
-.tavern-switch-button {
+#html-injector-edge-controls .html-injector-button {
     font-size: 14px;
     padding: 5px 10px;
     margin-top: 10px;
@@ -135,22 +132,22 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    background-color: var(--tavern-theme-button-bg);
-    color: var(--tavern-theme-body-color);
-    border: 1px solid var(--tavern-theme-border-color);
+    background-color: var(--smart-theme-button-bg);
+    color: var(--smart-theme-body-color);
+    border: 1px solid var(--smart-theme-border-color);
     border-radius: 5px;
     transition: background-color 0.3s, color 0.3s;
 }
 
-.tavern-switch-button:hover {
-    background-color: var(--tavern-theme-button-hover-bg);
+#html-injector-edge-controls .html-injector-button:hover {
+    background-color: var(--smart-theme-button-hover-bg);
 }
 
 /* 拖拽句柄样式 */
-.tavern-switch-drag-handle {
+#html-injector-edge-controls #html-injector-drag-handle {
     width: 100%;
     height: 20px;
-    background-color: var(--tavern-theme-border-color);
+    background-color: var(--smart-theme-border-color);
     cursor: ns-resize;
     margin-bottom: 10px;
     border-radius: 5px 5px 0 0;
@@ -159,169 +156,26 @@
     align-items: center;
 }
 
-.tavern-switch-drag-handle .drag-dots {
+#html-injector-edge-controls #html-injector-drag-handle .drag-dots {
     display: flex;
     justify-content: space-between;
     width: 20px;
     height: 15px;
 }
 
-.tavern-switch-drag-handle .drag-dots > div {
+#html-injector-edge-controls #html-injector-drag-handle .drag-dots > div {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
-.tavern-switch-drag-handle .drag-dots > div > div {
+#html-injector-edge-controls #html-injector-drag-handle .drag-dots > div > div {
     width: 4px;
     height: 4px;
     border-radius: 50%;
-    background-color: var(--tavern-theme-body-color);
+    background-color: var(--smart-theme-body-color);
 }
 
-.tavern-switch-drag-handle:hover .drag-dots > div > div {
-    background-color: var(--tavern-theme-button-hover-bg);
-}
-
-/* 内容区域样式 */
-.tavern-switch-content {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-/* 自动切换行样式 */
-.tavern-switch-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    margin: 8px 0;
-}
-
-/* 日/夜图标样式 */
-.tavern-day-night-icon {
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 8px;
-    transition: all 0.3s ease;
-}
-
-.tavern-day-night-icon svg {
-    width: 30px;
-    height: 30px;
-    fill: var(--tavern-theme-body-color);
-}
-
-.tavern-day-night-icon.day-mode svg {
-    fill: #FFD700; /* 金色 - 太阳 */
-}
-
-.tavern-day-night-icon.night-mode svg {
-    fill: #C0C0C0; /* 银色 - 月亮 */
-}
-
-/* 设置页面样式 */
-.tavern-switch-settings {
-    margin: 10px 0;
-    padding: 0 10px;
-}
-
-.tavern-settings-section {
-    margin-bottom: 20px;
-    border-bottom: 1px solid rgba(128, 128, 128, 0.3);
-    padding-bottom: 15px;
-}
-
-.tavern-settings-section:last-child {
-    border-bottom: none;
-    margin-bottom: 0;
-}
-
-.tavern-settings-section h4 {
-    margin-top: 0;
-    margin-bottom: 10px;
-    color: var(--tavern-theme-body-color);
-}
-
-.tavern-settings-row {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-.tavern-settings-row label {
-    flex: 1;
-    margin-right: 10px;
-}
-
-.tavern-settings-row input[type="number"] {
-    width: 60px;
-    padding: 5px;
-    background-color: rgba(0, 0, 0, 0.2);
-    border: 1px solid var(--tavern-theme-border-color);
-    color: var(--tavern-theme-body-color);
-    border-radius: 3px;
-}
-
-.tavern-select {
-    min-width: 150px;
-    padding: 5px;
-    background-color: rgba(0, 0, 0, 0.2);
-    border: 1px solid var(--tavern-theme-border-color);
-    color: var(--tavern-theme-body-color);
-    border-radius: 3px;
-}
-
-.tavern-settings-note {
-    font-size: 12px;
-    color: #888;
-    margin-top: 5px;
-    margin-bottom: 10px;
-}
-
-/* 响应式设计 */
-@media (max-width: 1000px) {
-    .tavern-switch-edge-controls {
-        font-size: 12px;
-        min-width: 100px;
-    }
-    
-    .tavern-switch-button {
-        font-size: 12px;
-        padding: 6px 10px;
-    }
-    
-    .tavern-switch-switch {
-        width: 40px;
-        height: 22px;
-    }
-    
-    .tavern-switch-slider:before {
-        height: 16px;
-        width: 16px;
-    }
-    
-    .tavern-switch-switch input:checked + .tavern-switch-slider:before {
-        transform: translateX(18px);
-    }
-}
-
-@media (max-width: 768px) {
-    .tavern-settings-row {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    
-    .tavern-settings-row label {
-        margin-bottom: 5px;
-    }
-    
-    .tavern-select {
-        width: 100%;
-    }
+#html-injector-edge-controls #html-injector-drag-handle:hover .drag-dots > div > div {
+    background-color: var(--smart-theme-button-hover-bg);
 }
