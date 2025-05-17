@@ -125,14 +125,6 @@
 }
 
 /* 设置面板（抽屉式） */
-#tavern-settings.inline-drawer {
-    margin: 15px;
-    border: 1px solid var(--tavern-border-color);
-    border-radius: 10px;
-    overflow: hidden;
-    background-color: var(--tavern-blur-tint);
-    backdrop-filter: blur(var(--tavern-blur-strength));
-}
 
 .inline-drawer-header {
     background-color: rgba(0, 0, 0, 0.2);
