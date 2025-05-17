@@ -1,5 +1,15 @@
-import { getContext, getApiUrl, extension_settings, saveSettingsDebounced } from "../../extensions.js";
-import { eventSource, event_types, getCurrentChatId } from "../../../script.js";
+import {
+    getContext,
+    getApiUrl,
+    extension_settings,
+    saveSettingsDebounced
+} from '../../../extensions.js';
+
+import {
+    eventSource,
+    event_types,
+    getCurrentChatId
+} from '../../../../script.js';
 
 // 插件名称
 const extensionName = "tavern-day-night-switch";
