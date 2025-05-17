@@ -1,5 +1,6 @@
-import { extension_settings } from '../../../extensions.js';
+import { extension_settings, renderExtensionTemplateAsync } from '../../../extensions.js';
 
+// 插件名称
 const PLUGIN_NAME = 'tavern-day-night-switcher';
 
 // 初始化设置
@@ -46,47 +47,90 @@ function isDayTime(currentTime, dayStart, dayEnd) {
     }
 }
 
-// 注入边缘控制菜单
-const edgeMenu = document.createElement('div');
-edgeMenu.id = 'html-injector-edge-controls';
-edgeMenu.innerHTML = `
-    <div id="toggle-edge-controls">☰</div>
-    <div id="html-injector-drag-handle">
-        <div class="drag-dots">
-            <div><div></div><div></div></div>
-            <div><div></div><div></div></div>
-        </div>
-    </div>
-    <button id="switch-day-night" class="html-injector-button">Switch Day/Night</button>
-    <div id="auto-switch-text" style="font-size: 12px; margin-top: 10px;">
-        Auto Switch: ${settings.auto_switch ? 'On' : 'Off'}
-    </div>
-`;
-document.body.appendChild(edgeMenu);
-
-// 切换边缘菜单显示状态
-document.getElementById('toggle-edge-controls').addEventListener('click', () => {
-    edgeMenu.classList.toggle('collapsed');
-});
-
-// 手动切换日夜模式
-document.getElementById('switch-day-night').addEventListener('click', () => {
-    switchToMode(currentMode === 'day' ? 'night' : 'day');
-});
-
-// 自动切换和状态更新
-setInterval(() => {
-    if (settings.auto_switch) {
-        const now = new Date();
-        const currentTime = now.toTimeString().slice(0, 5);
-        const isDay = isDayTime(currentTime, settings.day_start, settings.day_end);
-        const expectedMode = isDay ? 'day' : 'night';
-        if (currentMode !== expectedMode) {
-            switchToMode(expectedMode);
-        }
+// 初始化插件
+jQuery(async () => {
+    // 加载设置界面
+    try {
+        const settingsHtml = await renderExtensionTemplateAsync(
+            `third-party/${PLUGIN_NAME}`,
+            'settings'
+        );
+        $('#extensions_settings').append(settingsHtml);
+        console.log('[Tavern Day-Night Switcher] Settings UI loaded');
+    } catch (error) {
+        console.error('[Tavern Day-Night Switcher] Failed to load settings UI:', error);
     }
-    document.getElementById('auto-switch-text').textContent = `Auto Switch: ${settings.auto_switch ? 'On' : 'Off'}`;
-}, 60000);
 
-// 初始化状态文本
-document.getElementById('auto-switch-text').textContent = `Auto Switch: ${settings.auto_switch ? 'On' : 'Off'}`;
+    // 注入边缘控制菜单
+    const edgeMenu = document.createElement('div');
+    edgeMenu.id = 'html-injector-edge-controls';
+    edgeMenu.innerHTML = `
+        <div id="toggle-edge-controls">☰</div>
+        <div id="html-injector-drag-handle">
+            <div class="drag-dots">
+                <div><div></div><div></div></div>
+                <div><div></div><div></div></div>
+            </div>
+        </div>
+        <button id="switch-day-night" class="html-injector-button">Switch Day/Night</button>
+        <div id="auto-switch-text" style="font-size: 12px; margin-top: 10px;">
+            Auto Switch: ${settings.auto_switch ? 'On' : 'Off'}
+        </div>
+    `;
+    document.body.appendChild(edgeMenu);
+
+    // 切换显示/隐藏
+    const toggleButton = document.getElementById('toggle-edge-controls');
+    toggleButton.addEventListener('click', () => {
+        edgeMenu.classList.toggle('collapsed');
+    });
+
+    // 手动切换日夜模式
+    document.getElementById('switch-day-night').addEventListener('click', () => {
+        switchToMode(currentMode === 'day' ? 'night' : 'day');
+    });
+
+    // 拖拽功能
+    const dragHandle = document.getElementById('html-injector-drag-handle');
+    let isDragging = false;
+    let currentY;
+
+    dragHandle.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        currentY = e.clientY - parseInt(edgeMenu.style.top || '20vh', 10);
+        document.addEventListener('mousemove', onMouseMove);
+        document.addEventListener('mouseup', onMouseUp);
+    });
+
+    function onMouseMove(e) {
+        if (!isDragging) return;
+        let newTop = e.clientY - currentY;
+        const minTop = 0;
+        const maxTop = window.innerHeight - edgeMenu.offsetHeight;
+        newTop = Math.max(minTop, Math.min(newTop, maxTop));
+        edgeMenu.style.top = `${newTop}px`;
+    }
+
+    function onMouseUp() {
+        isDragging = false;
+        document.removeEventListener('mousemove', onMouseMove);
+        document.removeEventListener('mouseup', onMouseUp);
+    }
+
+    // 自动切换和状态更新
+    setInterval(() => {
+        if (settings.auto_switch) {
+            const now = new Date();
+            const currentTime = now.toTimeString().slice(0, 5);
+            const isDay = isDayTime(currentTime, settings.day_start, settings.day_end);
+            const expectedMode = isDay ? 'day' : 'night';
+            if (currentMode !== expectedMode) {
+                switchToMode(expectedMode);
+            }
+        }
+        document.getElementById('auto-switch-text').textContent = `Auto Switch: ${settings.auto_switch ? 'On' : 'Off'}`;
+    }, 60000);
+
+    // 初始化状态文本
+    document.getElementById('auto-switch-text').textContent = `Auto Switch: ${settings.auto_switch ? 'On' : 'Off'}`;
+});
