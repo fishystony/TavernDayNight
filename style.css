@@ -179,3 +179,27 @@
 #html-injector-edge-controls #html-injector-drag-handle:hover .drag-dots > div > div {
     background-color: var(--smart-theme-button-hover-bg);
 }
+
+/* 设置界面样式 */
+.tavern-day-night-settings .settings-item {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.tavern-day-night-settings .settings-item label {
+    width: 120px;
+    margin-right: 10px;
+}
+
+.tavern-day-night-settings .settings-item input[type="text"],
+.tavern-day-night-settings .settings-item input[type="time"] {
+    flex: 1;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.tavern-day-night-settings .settings-item input[type="checkbox"] {
+    margin-right: 5px;
+}
