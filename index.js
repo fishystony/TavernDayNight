@@ -1,21 +1,5 @@
-// 这些导入路径需要根据SillyTavern的真实路径结构调整
-try {
-    // 尝试不同的导入路径
-    var { getContext, getApiUrl, extension_settings, saveSettingsDebounced } = window;
-    var { eventSource, event_types, getCurrentChatId } = window;
-
-    if (!getContext) {
-        console.log('尝试从global获取函数');
-        var { getContext, getApiUrl, extension_settings, saveSettingsDebounced } = 
-            window.SillyTavern?.getContext || window;
-    }
-} catch (err) {
-    console.error('导入失败:', err);
-    // 将这些设置为空函数以避免错误
-    var getContext = () => {};
-    var extension_settings = {};
-    var saveSettingsDebounced = () => {};
-}
+import { getContext, getApiUrl, extension_settings, saveSettingsDebounced } from "../../extensions.js";
+import { eventSource, event_types, getCurrentChatId } from "../../../script.js";
 
 // 插件名称
 const extensionName = "tavern-day-night-switch";
