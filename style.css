@@ -1,0 +1,269 @@
+/* 主题变量 */
+:root {
+    --tavern-blur-tint: rgba(240, 240, 240, 0.9); /* 弹窗背景，浅灰透明 */
+    --tavern-body-color: #333333; /* 字体颜色，深灰 */
+    --tavern-border-color: #91c7ff; /* 边框颜色，浅蓝 */
+    --tavern-button-bg: #007bff; /* 按钮背景，蓝色 */
+    --tavern-button-hover-bg: #0056b3; /* 按钮悬停背景，深蓝 */
+    --tavern-blur-strength: 8px; /* 模糊强度 */
+}
+
+/* 边缘控制面板 */
+#tavern-edge-controls {
+    position: fixed;
+    right: 0;
+    top: 20vh;
+    background-color: var(--tavern-blur-tint);
+    border: 1px solid var(--tavern-border-color);
+    border-radius: 10px 0 0 10px;
+    padding: 10px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80px;
+    color: var(--tavern-body-color);
+    backdrop-filter: blur(var(--tavern-blur-strength));
+    transition: transform 0.3s ease-in-out;
+}
+
+/* 收起状态 */
+#tavern-edge-controls.collapsed {
+    transform: translateX(100%);
+}
+
+/* 显示/隐藏面板的切换按钮 */
+#tavern-edge-controls #toggle-edge-controls {
+    position: absolute;
+    top: 50%;
+    left: -20px;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 60px;
+    background-color: var(--tavern-blur-tint);
+    color: var(--tavern-body-color);
+    border: 1px solid var(--tavern-border-color);
+    border-radius: 5px 0 0 5px;
+    cursor: pointer;
+    font-size: 12px;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+}
+
+/* 昼夜切换开关 */
+#tavern-edge-controls .day-night-switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+    margin: 10px 0;
+}
+
+#tavern-edge-controls .day-night-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+#tavern-edge-controls .day-night-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #cccccc; /* 默认灰色 */
+    transition: 0.2s;
+    border-radius: 24px;
+}
+
+#tavern-edge-controls .day-night-slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: var(--tavern-body-color);
+    transition: 0.2s;
+    border-radius: 50%;
+}
+
+#tavern-edge-controls .day-night-switch input:checked + .day-night-slider {
+    background-color: var(--tavern-border-color);
+}
+
+#tavern-edge-controls .day-night-switch input:checked + .day-night-slider:before {
+    transform: translateX(26px);
+}
+
+/* 自动切换状态文本 */
+#tavern-edge-controls .auto-switch-status {
+    font-size: 12px;
+    text-align: center;
+    margin: 5px 0;
+    white-space: nowrap;
+}
+
+/* 按钮（例如设置按钮） */
+#tavern-edge-controls .tavern-button {
+    font-size: 14px;
+    padding: 5px 10px;
+    margin-top: 10px;
+    width: 100%;
+    text-align: center;
+    background-color: var(--tavern-button-bg);
+    color: #ffffff; /* 按钮字体为白色 */
+    border: 1px solid var(--tavern-border-color);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#tavern-edge-controls .tavern-button:hover {
+    background-color: var(--tavern-button-hover-bg);
+}
+
+/* 设置面板 */
+#tavern-settings {
+    position: fixed;
+    top: 5vh;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 600px;
+    max-height: 90vh;
+    background-color: var(--tavern-blur-tint);
+    border: 1px solid var(--tavern-border-color);
+    border-radius: 10px;
+    padding: 20px;
+    z-index: 10000;
+    color: var(--tavern-body-color);
+    backdrop-filter: blur(var(--tavern-blur-strength));
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+/* 设置面板头部 */
+#tavern-settings-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--tavern-border-color);
+}
+
+/* 关闭设置面板按钮 */
+#tavern-close-settings {
+    cursor: pointer;
+    font-size: 24px;
+}
+
+/* 设置面板内容 */
+#tavern-settings-content {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding-right: 10px;
+    margin-top: 10px;
+}
+
+/* 设置分组 */
+#tavern-settings-content .settings-section {
+    margin-bottom: 15px;
+}
+
+/* 设置子标题 */
+#tavern-settings-content .settings-subtitle {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+/* 下拉菜单和时间输入框 */
+#tavern-settings-content select,
+#tavern-settings-content input[type="time"],
+#tavern-settings-content input[type="color"] {
+    width: 100%;
+    padding: 5px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--tavern-body-color);
+    border: 1px solid var(--tavern-border-color);
+    border-radius: 3px;
+    margin-bottom: 10px;
+}
+
+/* 输入框聚焦样式 */
+#tavern-settings-content select:focus,
+#tavern-settings-content input[type="time"]:focus,
+#tavern-settings-content input[type="color"]:focus {
+    outline: none;
+    border-color: #0056b3;
+}
+
+/* 颜色选择器样式 */
+#tavern-settings-content input[type="color"] {
+    height: 30px;
+    padding: 2px;
+}
+
+/* 设置面板滚动条 */
+#tavern-settings-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+#tavern-settings-content::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+}
+
+#tavern-settings-content::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+}
+
+#tavern-settings-content::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+/* 响应式设计（移动端） */
+@media (max-width: 768px) {
+    #tavern-edge-controls {
+        width: 60px;
+        padding: 5px;
+    }
+
+    #tavern-edge-controls .tavern-button {
+        font-size: 12px;
+        padding: 4px 8px;
+    }
+
+    #tavern-edge-controls .day-night-switch {
+        width: 40px;
+        height: 20px;
+    }
+
+    #tavern-edge-controls .day-night-slider:before {
+        height: 14px;
+        width: 14px;
+        left: 3px;
+        bottom: 3px;
+    }
+
+    #tavern-edge-controls .day-night-switch input:checked + .day-night-slider:before {
+        transform: translateX(20px);
+    }
+
+    #tavern-edge-controls .auto-switch-status {
+        font-size: 10px;
+    }
+
+    #tavern-settings {
+        width: 95%;
+        max-height: 80vh;
+        padding: 15px;
+    }
+
+    #tavern-settings-content {
+        max-height: calc(75vh - 100px);
+    }
+}

@@ -1,0 +1,11 @@
+{
+    "display_name": "酒馆昼夜切换",
+    "loading_order": 10,
+    "requires": [],
+    "optional": [],
+    "js": "index.js",
+    "css": "style.css",
+    "author": "fishy",
+    "version": "0.0.1",
+    "description": "为酒馆场景提供昼夜切换功能的插件，支持手动切换、定时自动切换、主题与背景选择，以及自定义面板配色，适配桌面与移动端"
+}
